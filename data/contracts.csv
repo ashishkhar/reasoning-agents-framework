@@ -1,0 +1,6 @@
+contract_id,party_a,party_b,effective_date,termination_clause,liability_cap,governing_law,auto_renewal
+CTR-001,Acme Corp,GlobalTech Inc,2024-01-15,30 days notice,500000,Delaware,true
+CTR-002,StartupXYZ,Enterprise LLC,2023-06-01,60 days notice,1000000,California,false
+CTR-003,FinServ Ltd,DataCo,2024-03-20,90 days notice,2500000,New York,true
+CTR-004,CloudServices Inc,RetailMax,2024-02-10,45 days notice,750000,Texas,false
+CTR-005,TechStart LLC,BigCorp,2023-11-01,15 days notice,300000,Delaware,true

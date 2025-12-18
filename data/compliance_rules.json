@@ -1,0 +1,36 @@
+{
+  "rules": [
+    {
+      "id": "R001",
+      "name": "Minimum Notice Period",
+      "condition": "termination_notice_days < 30",
+      "severity": "HIGH",
+      "message": "Termination notice period is below 30 days minimum",
+      "category": "termination",
+      "remediation": "Update termination clause to require at least 30 days notice"
+    },
+    {
+      "id": "R002",
+      "name": "Liability Cap Threshold",
+      "condition": "liability_cap > 2000000",
+      "severity": "MEDIUM",
+      "message": "Liability cap exceeds $2M threshold - requires executive approval",
+      "category": "financial",
+      "remediation": "Obtain executive sign-off or negotiate lower liability cap"
+    },
+    {
+      "id": "R003",
+      "name": "Auto-Renewal Review",
+      "condition": "auto_renewal == True and governing_law != 'Delaware'",
+      "severity": "LOW",
+      "message": "Auto-renewal clause with non-Delaware law - review recommended",
+      "category": "renewal",
+      "remediation": "Legal review of auto-renewal terms under applicable state law"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "last_updated": "2024-01-15",
+    "description": "Standard compliance rules for contract analysis"
+  }
+}

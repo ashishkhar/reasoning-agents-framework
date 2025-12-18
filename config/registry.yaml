@@ -1,0 +1,87 @@
+# =============================================================================
+# Reasoning Agents Framework - Service Registry
+# =============================================================================
+# This file defines all agents and tools in the system.
+# 
+# CUSTOMIZE: Add your own agents and tools here.
+# Each entry defines: host, port, script path, and dependencies.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# MCP Tools
+# -----------------------------------------------------------------------------
+# Tools are the "hands" of the system - they execute deterministic operations.
+# Each tool runs as a separate FastMCP server.
+#
+# CUSTOMIZE: Add your own tools here with unique ports (11001+)
+# -----------------------------------------------------------------------------
+
+tools:
+  # Tool 1 - CUSTOMIZE: Rename and configure for your use case
+  tool_1:
+    host: localhost
+    port: 11001
+    enabled: true
+    description: "Database query tool (example)"
+    script: tools/tool_1.py
+    
+  # Tool 2 - CUSTOMIZE: Rename and configure for your use case
+  tool_2:
+    host: localhost
+    port: 11002
+    enabled: true
+    description: "Rules/validation engine (example)"
+    script: tools/tool_2.py
+
+# -----------------------------------------------------------------------------
+# Worker Agents
+# -----------------------------------------------------------------------------
+# Workers are specialized agents that handle specific domains.
+# They connect to MCP tools to perform their tasks.
+#
+# CUSTOMIZE: Add your own worker agents here with unique ports (8101+)
+# -----------------------------------------------------------------------------
+
+agents:
+  # Manager agent - orchestrates other workers
+  manager:
+    host: localhost
+    port: 8100
+    enabled: true
+    description: "Orchestrator that routes queries and synthesizes results"
+    script: agents/manager/manager_agent.py
+    depends_on:
+      - worker_1
+      - worker_2
+      
+  # Worker Agent 1 - CUSTOMIZE: Rename and configure for your use case
+  worker_1:
+    host: localhost
+    port: 8101
+    enabled: true
+    description: "Data extraction and analysis worker"
+    script: agents/workers/worker_agent_1.py
+    uses_tools:
+      - tool_1
+      
+  # Worker Agent 2 - CUSTOMIZE: Rename and configure for your use case
+  worker_2:
+    host: localhost
+    port: 8102
+    enabled: true
+    description: "Validation and compliance worker"
+    script: agents/workers/worker_agent_2.py
+    uses_tools:
+      - tool_1
+      - tool_2
+
+# -----------------------------------------------------------------------------
+# Service Discovery
+# -----------------------------------------------------------------------------
+# Used by the manager to discover available workers dynamically.
+# -----------------------------------------------------------------------------
+
+discovery:
+  auto_discover: false
+  health_check_interval: 30  # seconds
+  timeout: 5  # seconds per health check
